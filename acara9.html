@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Leaflet Map with MySQL Data</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- style (acara 10) -->
+
+    <link rel="stylesheet" href="assets/plugins/leaflet-search/leaflet-search.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+    <style>
+        /* Title Background */
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .info h2 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Elemen untuk menampilkan peta Leaflet dengan ID "map" -->
+    <div id="map" style="height: 100vh;"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- acara 10 -->
+    <script src="assets/plugins/leaflet-search/leaflet-search.js"></script>
+    <script>
+
+        // --------- background judul
+        var title = new L.Control();
+        title.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        title.update = function () {
+            this._div.innerHTML = '<h2>LATIHAN WEBGIS | COVID-19 KABUPATEN SLEMAN</h2>MATAKULIAH PEMROGRAMAN SPASIAL : WEB';
+        };
+        title.addTo(map);
+
+        // --------- legenda 
+        L.Control.Legend = L.Control.extend({
+            onAdd: function (map) {
+                var img = L.DomUtil.create('img');
+                img.src = 'assets/img/legend/legend.png'; // tambahin gambar legenda disini
+                img.style.width = '300px';
+                return img;
+            }
+        });
+
+        L.control.Legend = function (opts) {
+            return new L.Control.Legend(opts);
+        }
+
+        L.control.Legend({ position: 'bottomleft' }).addTo(map);
+
+        // ---------- watermark
+        L.Control.Watermark = L.Control.extend({
+            onAdd: function (map) {
+                var img = L.DomUtil.create('img');
+                img.src = 'assets/img/logo/LOGO_SIG_BLUE.png'; // ganti ke watermark
+                img.style.width = '300px';
+                return img;
+            }
+        });
+
+        L.control.watermark = function (opts) {
+            return new L.Control.Watermark(opts);
+        }
+
+        L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
+        // ---------- plugin search
+        var searchControl = new L.Control.Search({
+            position: "topleft",
+            layer: sleman_cov19, // Nama variabel layer
+            propertyName: 'KECAMATAN', // Field untuk pencarian
+            marker: false,
+            moveToLocation: function (latlng, title, map) {
+                var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+                map.setView(latlng, zoom);
+            }
+        });
+
+        searchControl.on('search:locationfound', function (e) {
+            e.layer.setStyle({
+                fillColor: '#ffff00',
+                color: '#0000ff'
+            });
+        }).on('search:collapse', function (e) {
+            featuresLayer.eachLayer(function (layer) {
+                featuresLayer.resetStyle(layer);
+            });
+        });
+
+        map.addControl(searchControl);
+
+
+        // ---------------------------------------- ACARA SEBELUMNYA ----------------------------------------
+
+
+        var map = L.map('map').setView([-7.7956, 110.3695], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Membuat layer grup untuk menampung marker
+        var markers = L.layerGroup();
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // Menguraikan data JSON yang diterima dari PHP
+                var data = JSON.parse(this.responseText);
+
+                // Iterasi melalui data dan menambahkan marker ke peta
+                data.forEach(function (row) {
+                    var marker = L.marker([row.latitude, row.longitude]).addTo(markers);
+                    marker.bindPopup("<strong>" + row.kecamatan + "</strong><br><img src='" + "' width='200'>");
+                });
+
+                markers.addTo(map); // Menambahkan layer grup ke peta
+                map.fitBounds(markers.getBounds()); // Menyesuaikan tampilan peta ke batas marker
+            }
+        };
+
+        xmlhttp.open("GET", "index-acara9.php", true); // Mengambil data dari PHP
+        xmlhttp.send();
+    </script>
+</body>
+
+</html>

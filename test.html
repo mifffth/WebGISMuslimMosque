@@ -1,0 +1,262 @@
+<html>
+
+<head>
+    <title>Leaflet debug page</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+        integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+        crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"
+        integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA=="
+        crossorigin=""></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="screen.css">
+
+    <link rel="stylesheet" href="assets/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="assets/plugins/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css">
+
+ 
+</head>
+
+<body>
+
+
+    <div id="map" 
+    class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        tabindex="0" style="position: relative;">
+        <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+            <div class="leaflet-pane leaflet-tile-pane">
+                <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
+                    <div class="leaflet-tile-container leaflet-zoom-animated"
+                        style="z-index: 18; transform: translate3d(205px, 96px, 0px) scale(1);"><img alt=""
+                            role="presentation" src="https://b.tile.openstreetmap.org/14/9580/5520.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(60px, -96px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://c.tile.openstreetmap.org/14/9580/5521.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(60px, 160px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://a.tile.openstreetmap.org/14/9579/5520.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-196px, -96px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://c.tile.openstreetmap.org/14/9581/5520.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(316px, -96px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://b.tile.openstreetmap.org/14/9579/5521.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-196px, 160px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://a.tile.openstreetmap.org/14/9581/5521.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(316px, 160px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://a.tile.openstreetmap.org/14/9580/5519.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(60px, -352px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://a.tile.openstreetmap.org/14/9580/5522.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(60px, 416px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://c.tile.openstreetmap.org/14/9579/5519.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-196px, -352px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://b.tile.openstreetmap.org/14/9581/5519.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(316px, -352px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://c.tile.openstreetmap.org/14/9579/5522.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-196px, 416px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://b.tile.openstreetmap.org/14/9581/5522.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(316px, 416px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://c.tile.openstreetmap.org/14/9578/5520.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-452px, -96px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://a.tile.openstreetmap.org/14/9582/5520.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(572px, -96px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://a.tile.openstreetmap.org/14/9578/5521.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-452px, 160px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://b.tile.openstreetmap.org/14/9582/5521.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(572px, 160px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://b.tile.openstreetmap.org/14/9578/5519.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-452px, -352px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://c.tile.openstreetmap.org/14/9582/5519.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(572px, -352px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://b.tile.openstreetmap.org/14/9578/5522.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(-452px, 416px, 0px); opacity: 1;"><img
+                            alt="" role="presentation" src="https://c.tile.openstreetmap.org/14/9582/5522.png"
+                            class="leaflet-tile leaflet-tile-loaded"
+                            style="width: 256px; height: 256px; transform: translate3d(572px, 416px, 0px); opacity: 1;">
+                    </div>
+                </div>
+            </div>
+            <div class="leaflet-pane leaflet-shadow-pane"><img
+                    src="https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png"
+                    class="leaflet-marker-shadow leaflet-zoom-animated" alt=""
+                    style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(399px, 371px, 0px);">
+            </div>
+            <div class="leaflet-pane leaflet-overlay-pane"></div>
+            <div class="leaflet-pane leaflet-marker-pane"><img
+                    src="https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon-2x.png"
+                    class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0"
+                    style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(399px, 371px, 0px); z-index: 371;">
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(246px, 253px, 0px); z-index: 253; opacity: 1;">
+                    <div><span>2</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(256px, 357px, 0px); z-index: 357; opacity: 1;">
+                    <div><span>5</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(356px, 255px, 0px); z-index: 255; opacity: 1;">
+                    <div><span>7</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(296px, 163px, 0px); z-index: 163; opacity: 1;">
+                    <div><span>15</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(240px, 113px, 0px); z-index: 113; opacity: 1;">
+                    <div><span>2</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(599px, 365px, 0px); z-index: 365; opacity: 1;">
+                    <div><span>3</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(476px, 337px, 0px); z-index: 337; opacity: 1;">
+                    <div><span>12</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(566px, 320px, 0px); z-index: 320; opacity: 1;">
+                    <div><span>6</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(435px, 149px, 0px); z-index: 149; opacity: 1;">
+                    <div><span>18</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(565px, 110px, 0px); z-index: 110; opacity: 1;">
+                    <div><span>3</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(504px, 230px, 0px); z-index: 230; opacity: 1;">
+                    <div><span>20</span></div>
+                </div>
+                <div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive"
+                    tabindex="0"
+                    style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(587px, 221px, 0px); z-index: 221; opacity: 1;">
+                    <div><span>6</span></div>
+                </div>
+            </div>
+            <div class="leaflet-pane leaflet-tooltip-pane"></div>
+            <div class="leaflet-pane leaflet-popup-pane"></div>
+            <div class="leaflet-proxy leaflet-zoom-animated"
+                style="transform: translate3d(2.45262e+06px, 1.41342e+06px, 0px) scale(8192);"></div>
+        </div>
+        <div class="leaflet-control-container">
+            <div class="leaflet-top leaflet-left">
+                <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in"
+                        href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a><a
+                        class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button"
+                        aria-label="Zoom out">-</a></div>
+            </div>
+            <div class="leaflet-top leaflet-right"></div>
+            <div class="leaflet-bottom leaflet-left"></div>
+            <div class="leaflet-bottom leaflet-right">
+                <div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com"
+                        title="A JS library for interactive maps">Leaflet</a> | © <a
+                        href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</div>
+            </div>
+        </div>
+    </div>
+    <button id="populate">Populate 1 marker</button>
+    <button id="remove">Remove 1 marker</button>
+
+    <script src="assets/plugins/Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
+
+    <script type="text/javascript">
+
+        var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }),
+            latlng = new L.LatLng(50.5, 30.51);
+
+        var map = new L.Map('map', { center: latlng, zoom: 15, layers: [tiles] });
+
+        var markers = new L.MarkerClusterGroup();
+        var markersList = [];
+
+        function populate() {
+            for (var i = 0; i < 100; i++) {
+                var m = new L.Marker(getRandomLatLng(map));
+                markersList.push(m);
+                markers.addLayer(m);
+            }
+            return false;
+        }
+        function populateRandomVector() {
+            for (var i = 0, latlngs = [], len = 20; i < len; i++) {
+                latlngs.push(getRandomLatLng(map));
+            }
+            var path = new L.Polyline(latlngs);
+            map.addLayer(path);
+        }
+        function getRandomLatLng(map) {
+            var bounds = map.getBounds(),
+                southWest = bounds.getSouthWest(),
+                northEast = bounds.getNorthEast(),
+                lngSpan = northEast.lng - southWest.lng,
+                latSpan = northEast.lat - southWest.lat;
+
+            return new L.LatLng(
+                southWest.lat + latSpan * Math.random(),
+                southWest.lng + lngSpan * Math.random());
+        }
+
+        markers.on('clusterclick', function (a) {
+            alert('cluster ' + a.layer.getAllChildMarkers().length);
+        });
+        markers.on('click', function (a) {
+            alert('marker ' + a.layer);
+        });
+
+        populate();
+        map.addLayer(markers);
+
+        L.DomUtil.get('populate').onclick = function () {
+            var bounds = map.getBounds(),
+                southWest = bounds.getSouthWest(),
+                northEast = bounds.getNorthEast(),
+                lngSpan = northEast.lng - southWest.lng,
+                latSpan = northEast.lat - southWest.lat;
+            var m = new L.Marker(new L.LatLng(
+                southWest.lat + latSpan * 0.5,
+                southWest.lng + lngSpan * 0.5));
+            markersList.push(m);
+            markers.addLayer(m);
+        };
+        L.DomUtil.get('remove').onclick = function () {
+            markers.removeLayer(markersList.pop());
+        };
+    </script>
+
+
+</body>
+
+</html>

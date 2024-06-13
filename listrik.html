@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.42.0/apexcharts.min.css"
+        integrity="sha512-nnNXPeQKvNOEUd+TrFbofWwHT0ezcZiFU5E/Lv2+JlZCQwQ/ACM33FxPoQ6ZEFNnERrTho8lF0MCEH9DBZ/wWw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> <i class="fa-solid fa-chart-simple"></i>Infografis Kota Semarang</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Data
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="pertanian.html">Jenis pertanian</a></li>
+                            <li><a class="dropdown-item" href="kepadatan.html">Kepadatan penduduk</a></li>
+                            <li><a class="dropdown-item" href="kemiskinan.html">Tingkat kemiskinan</a></li>
+                            <li><a class="dropdown-item" href="listrik.html">Penggunaan listrik</a></li>
+                            <li><a class="dropdown-item" href="pelabuhan.html">Ekspor dan impor</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-disabled="true" data-bs-toggle="modal" data-bs-target="#infoModal">
+                            <i class="fa-solid fa-circle-info"></i>Info</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Daya Terpasang, Produksi, dan Distribusi Listrik PT. PLN (Persero) pada Cabang/Ranting PLN menurut Golongan di Kota Semarang Tahun 2020</h5>
+            </div>
+            <div class="card-body">
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Biodata</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nama: Miftah</p>
+                    <p>Nim: 22/505796/SV/21938</p>
+                    <p>Kelas: B</p>
+                    <p>Sumber data: <a href="https://semarangkota.bps.go.id/"
+                            target="_blank">https://semarangkota.bps.go.id/</a>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- tipe chartnya blm diganti. -->
+    <!-- ntar diganti juga. -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.42.0/apexcharts.min.js"
+        integrity="sha512-HctQcT5hnI/elQck4950pvd50RuDnjCSGSoHI8CNyQIYVxsUoyJ+gSQIOrll4oM/Z7Kfi7WCLMIbJbiwYHFCpA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        var options = {
+            series: [
+                {
+                    name: 'Daya Terpasang',
+                    data: [140212.10, 657960.50, 499111.05, 386564.00, 63533.65, 1747381.30],
+                },
+                {
+                    name: 'Produksi Listrik',
+                    data: [194744.33, 1154311.44, 720735.66, 884399.21, 137847.32, 3092037.96],
+                },
+                {
+                    name: 'Listrik Terjual',
+                    data: [185153.83, 1090540.71, 686395.48, 837385.43, 131413.48, 2930888.92],
+                },
+                {
+                    name: 'Dipakai Sendiri',
+                    data: [0, 0, 0, 0, 0, 0],
+                },
+                {
+                    name: 'Susut/Hilang',
+                    data: [9590.50, 63770.73, 34340.18, 47013.79, 6433.84, 161149.04],
+                },
+            ],
+            chart: {
+                type: 'bar',
+                height: 350,
+                stacked: true,
+                stackType: '100%',
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                },
+            },
+            stroke: {
+                width: 1,
+                colors: ['#fff'],
+            },
+            title: {
+                text: 'Jenis: ',
+            },
+            xaxis: {
+                categories: [
+                    'Sosial/Social', 'Rumah tangga/Household', 'Usaha/Business',
+                    'Industri/Industry', 'Perkantoran/Offices', 'Kota Semarang',
+                ],
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                    },
+                },
+            },
+            fill: {
+                opacity: 1,
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left',
+                offsetX: 40,
+            },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+
+</body>
+
+</html>
