@@ -7,6 +7,8 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\PolylineController;
 use App\Http\Controllers\PolygonController;
+use App\Http\Controllers\LandingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ use App\Http\Controllers\PolygonController;
 
 Route::get('/',[MapController::class, 'index'])->name('index');
 Route::get('/table',[MapController::class, 'table'])->name('table');
+Route::get('/landing', [LandingController::class, 'landing'])->name('landing');
+
 
 //Create Point
 Route::post('/store-point',[PointController::class, 'store'])->name('store-point');
@@ -53,6 +57,9 @@ Route::patch('/update-polygon/{id}',[PolygonController::class, 'update'])->name(
 Route::get('/about', function () {
     return view('about');
 });
+
+
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

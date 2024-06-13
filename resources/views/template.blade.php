@@ -39,10 +39,14 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('landing') }}"> <i
+                                class="fa-solid fa-house"></i> Landing</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#infoModal"><i class="fa-solid fa-circle-info"></i> Info</a>
                     </li>
                     
-            
                     @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link text-primary" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i> Dashboard</a>
@@ -95,4 +99,3 @@
 </body>
 
 </html>
-s
