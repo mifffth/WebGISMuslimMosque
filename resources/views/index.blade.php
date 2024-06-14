@@ -222,8 +222,8 @@
                     '{{ csrf_field() }}' +
                     '{{ method_field('DELETE') }}' +
 
-                    "<button type='submit' class='btn btn-danger' onclick='return confirm(Yakin nih dihapus?)'><i class='fa-solid fa-trash-can'></i></button>" +
-                    "</form>" +
+                    "<button type='submit' class='btn btn-danger' onclick=\"return confirm('Anda yakin ingin menghapus titik?')\"><i class='fa-solid fa-trash-can'></i></button>" +
+"</form>" +
                     "</div>"
 
                     ;
@@ -353,10 +353,10 @@
         });
 
         // Load GeoJSON data
-        $.getJSON("{{ asset('Admin.json') }}", function(data) {
-            polygons.addData(data);
-            map.addLayer(polygons);
-        });
+        $.getJSON("{{ asset('assets/Admin.json') }}", function(data) {
+    polygons.addData(data);
+    map.addLayer(polygons);
+});
 
         /* Layer Control */
         var overlayMaps = {

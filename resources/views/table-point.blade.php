@@ -14,7 +14,7 @@
                             <th>Nama</th>
                             <th>Jenis</th>
                             <th>Koordinat</th>
-                            <th>Image</th>
+                            <th>Foto</th>
                         </tr>
                     </thead>
                     <tbody>
