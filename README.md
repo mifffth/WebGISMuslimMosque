@@ -19,3 +19,5 @@ Sumber data yang digunakan berasal dari Geoportal Kabupaten Sleman untuk titik d
 <img src = "assets/porto/form.png" alt= "Form Submit" />
 <img src = "assets/porto/peta.png" alt= "Tampilan WebMap" />
 <img src = "assets/porto/tabel.png" alt = "Tabel list" />
+<img src = "assets/porto/landing.png" alt = "Tabel list" />
+<img src = "assets/porto/chart.png" alt = "Tabel list" />
