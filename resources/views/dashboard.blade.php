@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col">
                 <div class="alert alert-primary" role="alert">
-                    <h4><i class="fa-solid fa-location-pin"></i> Total Points</h4>              
+                    <h4><i class="fa-solid fa-location-pin"></i> Jumlah Peribadatan</h4>              
                     <p style="font-size:  28pt">{{$Total_points}}</p>
                 </div>
                 </div>

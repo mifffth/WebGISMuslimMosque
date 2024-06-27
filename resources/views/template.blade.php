@@ -76,8 +76,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Nama: Miftah</p>
-                    <p>NIM: test</p>
+                    <p>WebGIS Peribadatan Muslim di Sleman</p>
+                    <p>Projek WebGIS ini bertema persebaran peribadatan Muslim di Sleman yang menyediakan pandangan komprehensif dan mudah diakses tentang data lokasi peribadatan. 
+                       WebGIS ini berisi visualisasi data dalam bentuk peta interaktif, grafik jumlah dan jenis tempat ibadah seperti masjid dan musholla, serta tabel informasi detail. 
+                       User juga dapat ikut berkontribusi mengelola konten dengan fungsi CRUD dari WebGIS.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
