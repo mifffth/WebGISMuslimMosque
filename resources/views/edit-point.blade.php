@@ -125,8 +125,8 @@
 
             drawnItems.addLayer(layer);
 
-            var popupContent = "Nama: " + feature.properties.name + "<br>" +
-                "Deskripsi: " + feature.properties.description + "<br>" +
+            var popupContent = "Nama: " + feature.properties.toponim + "<br>" +
+                "Deskripsi: " + feature.properties.objek + "<br>" +
                 "Foto: <img src='{{ asset('storage/images') }}/" + feature.properties.image +
                 "' class='img-thumbnail' alt='' width='200'>"
 

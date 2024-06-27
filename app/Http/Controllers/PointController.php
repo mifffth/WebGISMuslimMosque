@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Points;
+use App\Models\points;
 
-class PointController extends Controller
+class pointController extends Controller
 {
     public function __construct()
     {
-        $this->point = new Points();
+        $this->point = new points();
     }
-
     /**
      * Display a listing of the resource.
      */
@@ -25,8 +24,9 @@ class PointController extends Controller
                 'geometry' => json_decode($p->geom),
                 'properties' => [
                     'id' => $p->id,
-                    'name' => $p->toponim,
-                    'description' => $p->objek,
+                    'toponim' => $p->toponim,
+                    'objek' => $p->objek,
+                    'address' => $p->address,
                     'image' => $p->image,
                     'created_at' => $p->created_at,
                     'updated_at' => $p->updated_at
@@ -43,34 +43,36 @@ class PointController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    // Implementation for creating a new resource goes here (if needed)
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // Validate data
-        $request->validate(
-            [
-                'toponim' => 'required',
-                'objek' => 'required',
-                'geom' => 'required',
-                'image' => 'image|mimes:jpeg,png,jpg,gif|max:10000',
-            ],
-            [
-                'toponim.required' => 'Name is required',
-                'objek.required' => 'Description is required',
-                'geom.required' => 'Location is required'
-            ]
-        );
 
-        // Create folder for images if it doesn't exist
+        // Validate data
+        $request->validate([
+            'toponim' => 'required',
+            'geom' => 'required',
+            'image' => 'mimes:png,jpg,jpeg,gif,tiff|max:10000' //10mb
+        ],
+        [
+            'toponim.required' => 'Nama lokasi harus diisi',
+            'geom.required' => 'Titik lokasi harus diisi',
+            'image.mimes' => 'Foto harus memiliki format : png,jpg,jpeg,gif,tiff',
+            'image.max' => 'Foto tidak boleh melebihi 10 mb'
+        ]);
+
+        // Create folder images
         if (!is_dir('storage/images')) {
             mkdir('storage/images', 0777);
-        }
+        };
 
-        // Upload new image if provided
+        // Upload image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_point.' . $image->getClientOriginalExtension();
@@ -78,22 +80,21 @@ class PointController extends Controller
         } else {
             $filename = null;
         }
-
-        // Prepare data for insertion
         $data = [
             'toponim' => $request->toponim,
             'objek' => $request->objek,
+            'address' => $request->address,
             'geom' => $request->geom,
             'image' => $filename
         ];
 
-        // Create Point
+        // Create point
         if (!$this->point->create($data)) {
-            return redirect()->back()->with('error', 'Failed to create point');
+            return redirect()->back()->with('Error', 'Gagal membuat titik lokasi');
         }
 
         // Redirect to map
-        return redirect()->back()->with('success', 'Point created successfully');
+        return redirect()->back()->with('Sukses', 'Titik lokasi berhasil dibuat');
     }
 
     /**
@@ -109,8 +110,9 @@ class PointController extends Controller
                 'geometry' => json_decode($p->geom),
                 'properties' => [
                     'id' => $p->id,
-                    'name' => $p->toponim,
-                    'description' => $p->objek,
+                    'toponim' => $p->toponim,
+                    'objek' => $p->objek,
+                    'address' => $p->address,
                     'image' => $p->image,
                     'created_at' => $p->created_at,
                     'updated_at' => $p->updated_at
@@ -132,9 +134,9 @@ class PointController extends Controller
         $point = $this->point->find($id);
 
         $data = [
-            'title' => 'Edit Point',
+            'title' => 'Edit point',
             'point' => $point,
-            'id' => $id
+            'id' => $id,
         ];
 
         return view('edit-point', $data);
@@ -146,56 +148,52 @@ class PointController extends Controller
     public function update(Request $request, string $id)
     {
         // Validate data
-        $request->validate(
-            [
-                'toponim' => 'required',
-                'objek' => 'required',
-                'geom' => 'required',
-                'image' => 'image|mimes:jpeg,png,jpg,gif|max:10000',
-            ],
-            [
-                'toponim.required' => 'Name is required',
-                'objek.required' => 'Description is required',
-                'geom.required' => 'Location is required'
-            ]
-        );
+        $request->validate([
+            'toponim' => 'required',
+            'geom' => 'required',
+            'image' => 'mimes:png,jpg,jpeg,gif,tiff|max:10000' //10mb
+        ],
+        [
+            'toponim.required' => 'Nama lokasi harus diisi',
+            'geom.required' => 'Titik lokasi harus diisi',
+            'image.mimes' => 'Foto harus memiliki format : png,jpg,jpeg,gif,tiff',
+            'image.max' => 'Foto tidak boleh melebihi 10 mb'
+        ]);
 
-        // Create folder for images if it doesn't exist
+        // Create folder images
         if (!is_dir('storage/images')) {
             mkdir('storage/images', 0777);
-        }
+        };
 
-        // Upload new image if provided
+        // Upload image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_point.' . $image->getClientOriginalExtension();
             $image->move('storage/images', $filename);
 
-            // Delete old image if a new image is uploaded
-            $image_old = $this->point->find($id)->image;
+            // Delete old image
+            $image_old = !$this->point->find($id)->image;
             if ($image_old != null) {
                 unlink('storage/images/' . $image_old);
             }
         } else {
-            // Retain the old image if a new image is not uploaded
             $filename = $request->image_old;
         }
-
-        // Prepare data for update
         $data = [
             'toponim' => $request->toponim,
             'objek' => $request->objek,
+            'address' => $request->address,
             'geom' => $request->geom,
             'image' => $filename
         ];
 
-        // Update Point
+        // Update point
         if (!$this->point->find($id)->update($data)) {
-            return redirect()->back()->with('error', 'Failed to update point');
+            return redirect()->back()->with('Error', 'Gagal menyimpan data');
         }
 
         // Redirect to map
-        return redirect()->back()->with('success', 'Point updated successfully');
+        return redirect()->back()->with('Sukses', 'Data berhasil tersimpan');
     }
 
     /**
@@ -203,21 +201,19 @@ class PointController extends Controller
      */
     public function destroy(string $id)
     {
-        // get image
+        // Get point
         $image = $this->point->find($id)->image;
 
-        // delete point
-        if (!$this->point->destroy($id)) {
-            return redirect()->back()->with('error', 'Failed to delete point');
-        }
-
-        // delete image
+        // Delete image
         if ($image != null) {
             unlink('storage/images/' . $image);
         }
-
-        // redirect to map
-        return redirect()->back()->with('success', 'Point deleted successfully');
+        // Delete point
+        if (!$this->point->destroy($id)) {
+            return redirect()->back()->with('Error', 'Data gagal dihapus');
+        }
+        // Redirect to map
+        return redirect()->back()->with('Sukses', 'Data berhasil dihapus');
     }
 
     public function table()
